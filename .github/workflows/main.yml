@@ -3,18 +3,10 @@ name: Build ESP-AT Project
 on: push
 
 jobs:
-  build-esp32c2-4mb-ble-g2-at:
-    uses: ./.github/workflows/build_template_esp32c2.yml
-    with:
-      module_name: ESP32C2-4MB-G2
-      artifacts_name: esp32c2-4MB-ble-spi-g2-at
-      enable_ble_cmds: true
-    secrets: inherit
-
   build-esp32c2-4mb-ble-at:
     uses: ./.github/workflows/build_template_esp32c2.yml
     with:
-      module_name: ESP32C2-4MB
+      module_name: ESP32C2-4MB-BLE-SPI
       artifacts_name: esp32c2-4MB-ble-spi-at
       enable_ble_cmds: true
     secrets: inherit
@@ -22,6 +14,6 @@ jobs:
   build-esp32c2-2mb-ble-g2-at:
     uses: ./.github/workflows/build_template_esp32c2.yml
     with:
-      module_name: ESP32C2-2MB-BLE-G2
-      artifacts_name: esp32c2-2mb-ble-spi-g2-at
+      module_name: ESP32C2-2MB-BLE-SPI
+      artifacts_name: esp32c2-2mb-ble-spi-at
     secrets: inherit
