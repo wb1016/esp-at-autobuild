@@ -2,8 +2,44 @@ name: Build ESP-AT Project
 
 on: push
 
+# Only single-SPI (SPI_STANDARD_MODE: MOSI/MISO/SCK/CS + handshake) AT firmwares
+# for ESP32-C2, ESP32-C5 and ESP32-C6 are built. All other jobs are kept below
+# but disabled with `if: false`.
 jobs:
+  build-esp32c2-spi-at:
+    uses: ./.github/workflows/build_template_esp32c2.yml
+    with:
+      module_name: ESP32C2-SPI
+      artifacts_name: esp32c2-spi-at
+    secrets: inherit
+
+  build-esp32c2-2mb-spi-at:
+    uses: ./.github/workflows/build_template_esp32c2.yml
+    with:
+      module_name: ESP32C2-2MB-SPI
+      artifacts_name: esp32c2-2mb-spi-at
+    secrets: inherit
+
+  build-esp32c5-spi-at:
+    uses: ./.github/workflows/build_template_esp32c5.yml
+    with:
+      module_name: ESP32C5-SPI
+      artifacts_name: esp32c5-spi-at
+    secrets: inherit
+
+  build-esp32c6-spi-at:
+    uses: ./.github/workflows/build_template_esp32c6.yml
+    with:
+      module_name: ESP32C6-SPI
+      artifacts_name: esp32c6-spi-at
+    secrets: inherit
+
+  # ----------------------------------------------------------------------------------
+  # Disabled jobs (kept for reference; not built)
+  # ----------------------------------------------------------------------------------
+
   build-esp32-wroom-at:
+    if: false
     uses: ./.github/workflows/build_template_esp32.yml
     with:
       module_name: WROOM-32
@@ -11,6 +47,7 @@ jobs:
     secrets: inherit
 
   build-esp32-wrover-at:
+    if: false
     uses: ./.github/workflows/build_template_esp32.yml
     with:
       module_name: WROVER-32
@@ -18,6 +55,7 @@ jobs:
     secrets: inherit
 
   build-esp32-pico-d4-at:
+    if: false
     uses: ./.github/workflows/build_template_esp32.yml
     with:
       module_name: PICO-D4
@@ -25,6 +63,7 @@ jobs:
     secrets: inherit
 
   build-esp32-solo-at:
+    if: false
     uses: ./.github/workflows/build_template_esp32.yml
     with:
       module_name: SOLO-1
@@ -32,6 +71,7 @@ jobs:
     secrets: inherit
 
   build-esp32-d2wd-at:
+    if: false
     uses: ./.github/workflows/build_template_esp32.yml
     with:
       module_name: ESP32-D2WD
@@ -39,6 +79,7 @@ jobs:
     secrets: inherit
 
   build-esp32-mini-1-at:
+    if: false
     uses: ./.github/workflows/build_template_esp32.yml
     with:
       module_name: MINI-1
@@ -46,6 +87,7 @@ jobs:
     secrets: inherit
 
   build-esp32-sdio-at:
+    if: false
     uses: ./.github/workflows/build_template_esp32.yml
     with:
       module_name: ESP32-SDIO
@@ -53,6 +95,7 @@ jobs:
     secrets: inherit
 
   build-esp32-at-all-wifi-features-no-bt:
+    if: false
     uses: ./.github/workflows/build_template_esp32.yml
     with:
       module_name: WROVER-32
@@ -61,6 +104,7 @@ jobs:
     secrets: inherit
 
   build-esp32-at-all-bt-features-no-wifi:
+    if: false
     uses: ./.github/workflows/build_template_esp32.yml
     with:
       module_name: WROVER-32
@@ -69,6 +113,7 @@ jobs:
     secrets: inherit
 
   build-esp32-wroom-debug-at:
+    if: false
     uses: ./.github/workflows/build_template_esp32.yml
     with:
       module_name: WROOM-32
@@ -77,6 +122,7 @@ jobs:
     secrets: inherit
 
   build-esp32c3-mini-1-at:
+    if: false
     uses: ./.github/workflows/build_template_esp32c3.yml
     with:
       module_name: MINI-1
@@ -84,6 +130,7 @@ jobs:
     secrets: inherit
 
   build-esp32c3-spi-at:
+    if: false
     uses: ./.github/workflows/build_template_esp32c3.yml
     with:
       module_name: ESP32C3-SPI
@@ -91,6 +138,7 @@ jobs:
     secrets: inherit
 
   build-esp32c3-at-all-wifi-features:
+    if: false
     uses: ./.github/workflows/build_template_esp32c3.yml
     with:
       module_name: MINI-1
@@ -99,6 +147,7 @@ jobs:
     secrets: inherit
 
   build-esp32c3-mini-1-debug-at:
+    if: false
     uses: ./.github/workflows/build_template_esp32c3.yml
     with:
       module_name: MINI-1
@@ -116,6 +165,7 @@ jobs:
     secrets: inherit
 
   build-esp32c2-4mb-at:
+    if: false
     uses: ./.github/workflows/build_template_esp32c2.yml
     with:
       module_name: ESP32C2-4MB
@@ -123,6 +173,7 @@ jobs:
     secrets: inherit
 
   build-esp32c2-2mb-at:
+    if: false
     uses: ./.github/workflows/build_template_esp32c2.yml
     with:
       module_name: ESP32C2-2MB
@@ -130,6 +181,7 @@ jobs:
     secrets: inherit
 
   build-esp32c2-2mb-ble-at:
+    if: false
     uses: ./.github/workflows/build_template_esp32c2.yml
     with:
       module_name: ESP32C2-2MB-BLE
@@ -137,6 +189,7 @@ jobs:
     secrets: inherit
 
   build-esp32c5-4mb-at:
+    if: false
     uses: ./.github/workflows/build_template_esp32c5.yml
     with:
       module_name: ESP32C5-4MB
@@ -144,6 +197,7 @@ jobs:
     secrets: inherit
 
   build-esp32c5-4mb-debug-at:
+    if: false
     uses: ./.github/workflows/build_template_esp32c5.yml
     with:
       module_name: ESP32C5-4MB
@@ -152,20 +206,15 @@ jobs:
     secrets: inherit
 
   build-esp32c5-sdio-at:
+    if: false
     uses: ./.github/workflows/build_template_esp32c5.yml
     with:
       module_name: ESP32C5-SDIO
       artifacts_name: esp32c5-sdio-at
     secrets: inherit
 
-  build-esp32c5-spi-at:
-    uses: ./.github/workflows/build_template_esp32c5.yml
-    with:
-      module_name: ESP32C5-SPI
-      artifacts_name: esp32c5-spi-at
-    secrets: inherit
-
   build-esp32c2-4mb-g2-at:
+    if: false
     uses: ./.github/workflows/build_template_esp32c2.yml
     with:
       module_name: ESP32C2-4MB-G2
@@ -173,6 +222,7 @@ jobs:
     secrets: inherit
 
   build-esp32c2-4mb-g2-debug-at:
+    if: false
     uses: ./.github/workflows/build_template_esp32c2.yml
     with:
       module_name: ESP32C2-4MB-G2
@@ -181,6 +231,7 @@ jobs:
     secrets: inherit
 
   build-esp32c2-4mb-ble-g2-at:
+    if: false
     uses: ./.github/workflows/build_template_esp32c2.yml
     with:
       module_name: ESP32C2-4MB-G2
@@ -189,6 +240,7 @@ jobs:
     secrets: inherit
 
   build-esp32c2-2mb-g2-at:
+    if: false
     uses: ./.github/workflows/build_template_esp32c2.yml
     with:
       module_name: ESP32C2-2MB-G2
@@ -196,6 +248,7 @@ jobs:
     secrets: inherit
 
   build-esp32c2-2mb-ble-g2-at:
+    if: false
     uses: ./.github/workflows/build_template_esp32c2.yml
     with:
       module_name: ESP32C2-2MB-BLE-G2
@@ -203,6 +256,7 @@ jobs:
     secrets: inherit
 
   build-esp32c2-2mb-no-ota-g2-at:
+    if: false
     uses: ./.github/workflows/build_template_esp32c2.yml
     with:
       module_name: ESP32C2-2MB-NO-OTA-G2
@@ -210,6 +264,7 @@ jobs:
     secrets: inherit
 
   build-esp32c6-4mb-at:
+    if: false
     uses: ./.github/workflows/build_template_esp32c6.yml
     with:
       module_name: ESP32C6-4MB
@@ -217,6 +272,7 @@ jobs:
     secrets: inherit
 
   build-esp32c6-4mb-debug-at:
+    if: false
     uses: ./.github/workflows/build_template_esp32c6.yml
     with:
       module_name: ESP32C6-4MB
@@ -225,6 +281,7 @@ jobs:
     secrets: inherit
 
   build-esp32c61-4mb-at:
+    if: false
     uses: ./.github/workflows/build_template_esp32c61.yml
     with:
       module_name: ESP32C61-4MB
@@ -232,6 +289,7 @@ jobs:
     secrets: inherit
 
   build-esp32c61-sdio-at:
+    if: false
     uses: ./.github/workflows/build_template_esp32c61.yml
     with:
       module_name: ESP32C61-SDIO
@@ -239,6 +297,7 @@ jobs:
     secrets: inherit
 
   build-esp32c61-4mb-debug-at:
+    if: false
     uses: ./.github/workflows/build_template_esp32c61.yml
     with:
       module_name: ESP32C61-4MB
@@ -247,6 +306,7 @@ jobs:
     secrets: inherit
 
   build-esp32s2-mini-at:
+    if: false
     uses: ./.github/workflows/build_template_esp32s2.yml
     with:
       module_name: MINI
@@ -254,6 +314,7 @@ jobs:
     secrets: inherit
 
   build-esp32s2-mini-debug-at:
+    if: false
     uses: ./.github/workflows/build_template_esp32s2.yml
     with:
       module_name: MINI

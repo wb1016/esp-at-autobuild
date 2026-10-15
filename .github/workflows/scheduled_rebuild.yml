@@ -1,14 +1,19 @@
 name: Scheduled Rebuild of Maintenance Branches
 
+# DISABLED: no firmware is built from this repo's CI anymore. The scheduled
+# trigger is commented out and the dispatch job is disabled with `if: false`,
+# so even a manual run does nothing. To re-enable, restore the `schedule` block
+# below and remove `if: false` from the job.
+#
 # GitHub only runs `schedule` triggers from the workflow file on the default
 # branch. So this dispatcher lives on the default branch and fans out to the
 # maintenance branches via workflow_dispatch, which rebuilds their firmware and
 # refreshes the artifacts that otherwise expire after 90 days.
 on:
-  schedule:
-    # Run at 02:00 UTC on the 1st of every other month.
-    - cron: '0 2 1 */2 *'
   workflow_dispatch:
+  # schedule:
+  #   # Run at 02:00 UTC on the 1st of every other month.
+  #   - cron: '0 2 1 */2 *'
 
 permissions:
   actions: write
@@ -16,6 +21,7 @@ permissions:
 
 jobs:
   dispatch:
+    if: false
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false

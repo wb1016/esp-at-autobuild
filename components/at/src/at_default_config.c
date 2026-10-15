@@ -59,6 +59,8 @@ static const at_module_info_t s_module_info[] = {
     {"ESP32C2-4MB-G2", CONFIG_ESP_AT_OTA_TOKEN_ESP32C2_4MB_G2,      CONFIG_ESP_AT_OTA_SSL_TOKEN_ESP32C2_4MB_G2},
     {"ESP32C2-2MB-NO-OTA-G2", NULL, NULL},
     {"ESP32C2-2MB-BLE-G2", NULL, NULL},
+    {"ESP32C2-SPI",    NULL,  NULL },   // ESP32C2-SPI
+    {"ESP32C2-2MB-SPI", NULL, NULL },   // ESP32C2-2MB-SPI
 #endif
 
 #if defined(CONFIG_IDF_TARGET_ESP32C5)
@@ -69,6 +71,7 @@ static const at_module_info_t s_module_info[] = {
 
 #if defined(CONFIG_IDF_TARGET_ESP32C6)
     {"ESP32C6-4MB",    CONFIG_ESP_AT_OTA_TOKEN_ESP32C6_4MB,         CONFIG_ESP_AT_OTA_SSL_TOKEN_ESP32C6_4MB},
+    {"ESP32C6-SPI",    NULL,  NULL },   // ESP32C6-SPI
 #endif
 
 #if defined(CONFIG_IDF_TARGET_ESP32C61)
